@@ -3,7 +3,7 @@
 
 
 
-std::ostream& operator<<(std::ostream& os, character& ch) {
+std::ostream& operator<<(std::ostream& os, const character& ch) {
 	os << ch.getName() << ": HP: " << ch.getCurrentHP() << ", DMG: " << ch.getAttack() << std::endl;
 	return os;
 }

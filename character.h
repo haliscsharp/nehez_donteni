@@ -12,16 +12,16 @@ public:
 	}
 	~character();
 
-	std::string getName() { return name; }
-	int getMaxHP() { return maxHP; }
-	int getCurrentHP() { return currentHP; }
-	int getAttack() { return attack; }
+	std::string getName() const { return name; }
+	//int getMaxHP() { return maxHP; }
+	int getCurrentHP() const { return currentHP; }
+	int getAttack() const { return attack; }
 
 	bool isDead() { return currentHP == 0; }
 
 	void takeDamage(int damage) { (currentHP - damage < 0) ? currentHP = 0 : currentHP -= damage; }
 	
-	friend std::ostream& operator<<(std::ostream& os, character& ch);
+	friend std::ostream& operator<<(std::ostream& os, const character& ch);
 
 private:
 	std::string name;
