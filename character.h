@@ -19,8 +19,8 @@ public:
 
 	bool isDead() { return currentHP == 0; }
 
-	void attackEnemy(character* opponent) { opponent->takeDamage(attack); }
-	void takeDamage(int damage) { (currentHP - damage < 0) ? currentHP = 0 : currentHP -= damage; }
+	void attackEnemy(character* opponent) { opponent->takeDamage(this); }
+	void takeDamage(character* opponent) { (currentHP - opponent->getAttack() < 0) ? currentHP = 0 : currentHP -= opponent->getAttack(); }
 	
 	friend std::ostream& operator<<(std::ostream& os, const character& ch);
 
