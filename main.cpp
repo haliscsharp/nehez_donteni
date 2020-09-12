@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-
+ 
 #include "character.h"
 
 int main(int argc, char* argv[]) {
