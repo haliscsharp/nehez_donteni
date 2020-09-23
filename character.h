@@ -1,34 +1,35 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
- 
-#include <iostream>
 
-class character
+#include <iostream>
+#include <fstream>
+
+class Character
 {
 public:
-	character(std::string _name, int _maxHP, int _attack) :name(_name), maxHP(_maxHP), attack(_attack)
-	{
-		currentHP = maxHP;
-	}
-	~character();
+	Character(std::string _name, int _maxHP, int _attack) :name(_name), maxHP(_maxHP), currentHP(_maxHP), attack(_attack)
+	{}
+
+	~Character() {}
 
 	std::string getName() const { return name; }
-	//int getMaxHP() { return maxHP; }
 	int getCurrentHP() const { return currentHP; }
 	int getAttack() const { return attack; }
 
-	bool isDead() { return currentHP == 0; }
+	bool isDead() const { return currentHP == 0; }
 
-	void attackEnemy(character* opponent) { opponent->takeDamage(this); }
-	void takeDamage(character* opponent) { (currentHP - opponent->getAttack() < 0) ? currentHP = 0 : currentHP -= opponent->getAttack(); }
-	
-	friend std::ostream& operator<<(std::ostream& os, const character& ch);
+	static Character parseUnit(const std::string& name);
+
+	void attackEnemy(Character& opponent) const { opponent.takeDamage(*this); }
+	void takeDamage(const Character& opponent) { (currentHP - opponent.getAttack() < 0) ? currentHP = 0 : currentHP -= opponent.getAttack(); }
+
+	friend std::ostream& operator<<(std::ostream & os, const Character & ch);
 
 private:
-	std::string name;
-	int maxHP;
+	const std::string name;
+	const int maxHP;
 	int currentHP;
-	int attack;
+	const int attack;
 };
 
 #endif
